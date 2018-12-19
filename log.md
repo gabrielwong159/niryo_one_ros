@@ -1,5 +1,7 @@
 # Niryo One
-[Niryo One GitHub](https://github.com/NiryoRobotics/niryo_one_ros)
+> [Niryo One GitHub](https://github.com/NiryoRobotics/niryo_one_ros)
+
+Records of current changes to the default Niryo One files for Gazebo simulation and control.
 
 ## Test installation
 ### RViz MotionPlanning
@@ -8,7 +10,7 @@
     roslaunch niryo_one_bringup desktop_rviz_simulation.launch
     ```
 1. Open MotionPlanning in RViz (Displays > Add > MotionPlanning)
-1. Move the robot to desired position
+1. Move the robot to target position
 1. MotionPlanning > Planning > Plan
 1. MotionPlanning > Planning > Execute
 
@@ -22,6 +24,7 @@
 #### Launch
 ```
 roslaunch niryo_one_bringup desktop_rviz_simulation.launch
+rosrun niryo_one_commander demo.py
 ```
 
 ## Gazebo
@@ -41,7 +44,7 @@ roslaunch niryo_one_gazebo niryo_one_gazebo.launch
 ```
 
 ## ROS Control and MoveIt!
-> [Source](https://github.com/ahoarau/mekabot/wiki/ros_control-and-MoveIt!)
+> [Guide](https://github.com/ahoarau/mekabot/wiki/ros_control-and-MoveIt!)
 
 ### Setup
 1. Create `niryo_one_control` folder
