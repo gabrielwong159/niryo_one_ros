@@ -1,28 +1,7 @@
 <?xml version="1.0"?>
-
-<!--
-    niryo_one.urdf.xacro
-    Copyright (C) 2017 Niryo
-    All rights reserved.
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="niryo_one">
 	
 	<!-- Properties -->
-
     <xacro:property name="distance_origin_shoulder_z" value="0.103" />
     <xacro:property name="distance_shoulder_arm_z" value="0.08" />
     <xacro:property name="distance_arm_elbow_x" value="0.21004" />
@@ -33,9 +12,7 @@
     <xacro:property name="distance_wrist_hand_x" value="0.018" />
     <xacro:property name="distance_wrist_hand_y" value="0" />
     <xacro:property name="distance_hand_tool" value="0.00" />
-	
 	<xacro:property name="PI" value="3.14159265359" />
-
     <xacro:property name="limit_low_shoulder_rotation" value="-3.05433" />
     <xacro:property name="limit_up_shoulder_rotation" value="3.05433" />
     <xacro:property name="limit_low_arm_rotation" value="${-PI/2}" />
@@ -49,11 +26,16 @@
     <xacro:property name="limit_low_hand_rotation" value="-2.57" />
     <xacro:property name="limit_up_hand_rotation" value="2.57" />
 
-
-	<!-- Links -->
-
+<!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/niryo_one</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+<!-- Links -->
     <link name="ground_link"/>
-
+<!-- ................................................................... -->
     <link name="base_link">
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0" />
@@ -64,6 +46,11 @@
 				<color rgba="0.2 0.6 1 1" />
 			</material>
         </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="3533.6455"/>
+      <inertia ixx="184.9155" ixy="-0.0354" ixz="-15.4188" iyy="166.2671" iyz="0.3292" izz="80.2239"/>
+    </inertial>
         <collision>
 			<origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -71,7 +58,7 @@
             </geometry>
         </collision>
 	</link>
-
+<!-- ................................................................... -->
     <link name="shoulder_link">
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0" />
@@ -82,6 +69,11 @@
 				<color rgba="0.8 0.8 0.8 1" />
 			</material>
 		</visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="0.035336455"/>
+      <inertia ixx="0.001849155" ixy="-0.000000354" ixz="-0.000154188" iyy="0.001662671" iyz="0.000003292" izz="0.000802239"/>
+    </inertial>
         <collision>
 			<origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -89,7 +81,7 @@
             </geometry>
         </collision>
 	</link>
-
+<!-- ................................................................... -->
     <link name="arm_link">
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0" />
@@ -100,6 +92,11 @@
 				<color rgba="0.2 0.6 1 1" />
 			</material>
 		</visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="0.035336455"/>
+      <inertia ixx="0.001849155" ixy="-0.000000354" ixz="-0.000154188" iyy="0.001662671" iyz="0.000003292" izz="0.000802239"/>
+    </inertial>
         <collision>
 			<origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -107,7 +104,7 @@
             </geometry>
         </collision>
 	</link>
-	
+<!-- ................................................................... -->	
     <link name="elbow_link">
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0" />
@@ -119,6 +116,11 @@
 				<color rgba="0.8 0.8 0.8 1" />
 			</material>
 		</visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="0.035336455"/>
+      <inertia ixx="0.001849155" ixy="-0.000000354" ixz="-0.000154188" iyy="0.001662671" iyz="0.000003292" izz="0.000802239"/>
+    </inertial>
         <collision>
 			<origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -126,7 +128,7 @@
             </geometry>
         </collision>
 	</link>
-
+<!-- ................................................................... -->
     <link name="forearm_link">
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0" />
@@ -137,6 +139,11 @@
 				<color rgba="0.2 0.6 1 1" />
 			</material>
 		</visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="0.035336455"/>
+      <inertia ixx="0.001849155" ixy="-0.000000354" ixz="-0.000154188" iyy="0.001662671" iyz="0.000003292" izz="0.000802239"/>
+    </inertial>
         <collision>
 			<origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -144,7 +151,7 @@
             </geometry>
         </collision>
 	</link>
-
+<!-- ................................................................... -->
     <link name="wrist_link">
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0" />
@@ -155,6 +162,11 @@
 				<color rgba="0.8 0.8 0.8 1" />
 			</material>
 		</visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="0.035336455"/>
+      <inertia ixx="0.001849155" ixy="-0.000000354" ixz="-0.000154188" iyy="0.001662671" iyz="0.000003292" izz="0.000802239"/>
+    </inertial>
         <collision>
 			<origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -162,7 +174,7 @@
             </geometry>
         </collision>
 	</link>
-	
+<!-- ................................................................... -->	
     <link name="hand_link">
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0" />
@@ -173,6 +185,11 @@
 				<color rgba="0.6 0 0 1" />
 			</material>
 		</visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="0.035336455"/>
+      <inertia ixx="0.001849155" ixy="-0.000000354" ixz="-0.000154188" iyy="0.001662671" iyz="0.000003292" izz="0.000802239"/>
+    </inertial>
         <collision>
 			<origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -180,19 +197,16 @@
             </geometry>
         </collision>
 	</link>
-	
+<!-- ................................................................... -->	
     <link name="tool_link">
 	</link>
-
-
-	<!--Joints -->
-
+<!--Joints -->
     <joint name="ground_joint" type="fixed">
         <parent link="ground_link" />
         <child link="base_link" />
         <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>
-
+<!-- ................................................................... -->
 	<joint name="joint_1" type="revolute">
         <parent link="base_link" />
         <child link="shoulder_link" />
@@ -200,7 +214,7 @@
 		<axis xyz="0 0 1" />
 		<limit effort="1" velocity="1.0" lower="${limit_low_shoulder_rotation}" upper="${limit_up_shoulder_rotation}" />
 	</joint>
-
+<!-- ................................................................... -->
 	<joint name="joint_2" type="revolute">
         <parent link="shoulder_link" />
         <child link="arm_link" />
@@ -208,7 +222,7 @@
 		<limit effort="1" velocity="1.0" lower="${limit_low_arm_rotation}" upper="${limit_up_arm_rotation}" />
 		<axis xyz="0 0 1" />
 	</joint>
-
+<!-- ................................................................... -->
 	<joint name="joint_3" type="revolute">
         <parent link="arm_link" />
         <child link="elbow_link" />
@@ -216,7 +230,7 @@
 		<limit effort="1" velocity="1.0" lower="${limit_low_elbow_rotation}" upper="${limit_up_elbow_rotation}" />
 		<axis xyz="0 0 1" />	
 	</joint>
-
+<!-- ................................................................... -->
 	<joint name="joint_4" type="revolute">
         <parent link="elbow_link" />
         <child link="forearm_link" />
@@ -224,7 +238,7 @@
 		<limit effort="1" velocity="1.0" lower="${limit_low_forearm_rotation}" upper="${limit_up_forearm_rotation}" />
 		<axis xyz="0 0 1" />
 	</joint>
-
+<!-- ................................................................... -->
 	<joint name="joint_5" type="revolute">
         <parent link="forearm_link" />
         <child link="wrist_link" />
@@ -232,7 +246,7 @@
 		<limit effort="1" velocity="1.0" lower="${limit_low_wrist_rotation}" upper="${limit_up_wrist_rotation}" />
 		<axis xyz="0 0 1" />
 	</joint>
-
+<!-- ................................................................... -->
 	<joint name="joint_6" type="revolute">
         <parent link="wrist_link" />
         <child link="hand_link" />
@@ -240,11 +254,76 @@
 		<limit effort="1" velocity="1.0" lower="${limit_low_hand_rotation}" upper="${limit_up_hand_rotation}" />
 		<axis xyz="0 0 1" />
 	</joint>
-
+<!-- ................................................................... -->
 	<joint name="hand_tool_joint" type="fixed">
         <parent link="hand_link" />
         <child link="tool_link" />
         <origin xyz="0 0 ${distance_hand_tool}" rpy="${-PI/2} ${-PI/2} 0" />
 	</joint>
-
+<!-- Transmission -->
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_1">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>10000000000000</mechanicalReduction>
+    </actuator>
+  </transmission>
+<!-- ................................................................... -->
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_2">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1000000000000000000000000000</mechanicalReduction>
+    </actuator>
+  </transmission>
+<!-- ................................................................... -->
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_3">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor3">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>10000000000000</mechanicalReduction>
+    </actuator>
+  </transmission>
+<!-- ................................................................... -->
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_4">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor4">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>10000000000000</mechanicalReduction>
+    </actuator>
+  </transmission>
+<!-- ................................................................... -->
+  <transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_5">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor5">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>10000000000000</mechanicalReduction>
+    </actuator>
+  </transmission>
+<!-- ................................................................... -->
+  <transmission name="tran6">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_6">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor6">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>10000000000000</mechanicalReduction>
+    </actuator>
+  </transmission>
 </robot>
